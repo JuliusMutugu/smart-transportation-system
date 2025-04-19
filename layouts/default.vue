@@ -1,14 +1,15 @@
 <template>
   <div>
-    <div class="navsection">
-      <NuxtLink to="/dashboard"> Dashboard</NuxtLink>
-      <NuxtLink to="/Booking"> Bookings</NuxtLink>
-      <NuxtLink to="/profile"> profile</NuxtLink>
-      <NuxtLink to="/book"> book</NuxtLink>
-      <NuxtLink to="/trips"> trips</NuxtLink>
-      <NuxtLink to="/transport"> transport</NuxtLink>
-      <NuxtLink to="/stages"> stages</NuxtLink>
-      <NuxtLink to="/driverTrip"> driverTrip</NuxtLink>
+    <div class="navsection my-2 rounded-md text-right  p-2">
+      <NuxtLink to="/"> <NavSection>Home</NavSection></NuxtLink>
+      <NuxtLink to="/dashboard"> <NavSection>Dashboard</NavSection></NuxtLink>
+      <!-- <NuxtLink to="/Booking"> <NavSection>Bookings</NavSection></NuxtLink> -->
+      <NuxtLink to="/profile"> <NavSection>Profile</NavSection></NuxtLink>
+      <!-- <NuxtLink to="/book"> book</NuxtLink> -->
+      <NuxtLink to="/trips"> <NavSection>Trips</NavSection></NuxtLink>
+      <!-- <NuxtLink to="/transport"> transport</NuxtLink> -->
+      <!-- <NuxtLink to="/stages"> stages</NuxtLink> -->
+      <NuxtLink to="/driverTrip"><NavSection>DriverTrips </NavSection></NuxtLink>
     </div>
     <slot></slot>
   </div>
@@ -19,15 +20,6 @@
 </script>
 
 <style scoped>
-  .navsection{
-    padding: 17px;
-    margin: 12px;
-    text-decoration: none;
-    color: white;
-    background-color: rgb(60, 147, 158);
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 18px;
 
-  }
   
 </style>

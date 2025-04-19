@@ -1,9 +1,10 @@
 <template>
-  <div class="p-6 min-h-screen bg-gray-100">
+  <div class="p-6 min-h-screen bg-gray-100 ">
     <h1 class="text-3xl font-semibold text-lime-600 mb-6">My Profile</h1>
     <UButton label="logout" color="red" size="sm" class="float-right" to="/login" />
-
-    <UCard class="max-w-xl mx-auto bg-white">
+    
+    <UAlert v-text="alert_message" color="green" v-if="show_alert"/>
+    <UCard class="max-w-xl mx-auto bg-white lg:w-10/12">
       <template #header>
         <div class="flex items-center gap-4">
           <img
@@ -68,21 +69,26 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-
+const alert_message = ref('')
+const show_alert = ref(false)
 const editing = ref(false)
 
 const roles = ['Passenger', 'Driver', 'Sacco Admin']
 
 const user = ref({
-  name: 'John Doe',
-  email: 'john@example.com',
-  phone: '+254712345678',
+  name: 'Julius Mutugu',
+  email: 'julimore@gmail.com',
+  phone: '+254114975752',
   role: 'Passenger'
 })
-
 const saveProfile = () => {
   editing.value = false
-  alert('Profile updated successfully!')
+  
+  show_alert.value = true
+  alert_message.value = "profile updated successfully ";
+  setTimeout(() =>{
+    show_alert.value = false   
+  },1000)
 }
+
 </script>

@@ -54,8 +54,8 @@ const handleLogin = () => {
   isSubmitting.value = true;
   setTimeout(() => {
     if (loginData.value.username === 'user' && loginData.value.password === 'password123') {
-      // Redirect or perform the actual login process
       errorMessage.value = '';
+      navigateTo()
     } else {
       errorMessage.value = 'Invalid credentials!';
     }

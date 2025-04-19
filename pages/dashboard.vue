@@ -1,11 +1,11 @@
 <template>
-  <div class="m-2 bg-[#f8f9fa] p-6 rounded-lg shadow-md">
-    <div class="cursor-pointer">
-            <UAvatar
-       src="https://avatars.githubusercontent.com/u/739984?v=4"
-       alt="Avatar"/>
+  <div class="m-2 bg-[#dde0e4] p-6 rounded-lg shadow-md">
+            <div>
+              <UAvatar
+                     src="https://avatars.githubusercontent.com/u/739984?v=4"
+                     alt="Avatar"/>
+            </div>
       <h1 class="font-semibold text-blue-600 max-w-sm">Welcome, {{user.name}}</h1>
-    </div>
 
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" >
       <Card title="Trip Booking">

@@ -1,8 +1,8 @@
 <template>
-  <div class="p-6 min-h-screen bg-gray-100">
+  <div class="p-6 min-h-screen bg-gray-100 ">
     <h1 class="text-3xl font-semibold text-lime-600 mb-6">My Trips</h1>
 
-    <div class="grid gap-6 md:grid-cols-2">
+    <div class="grid gap-6 md:grid-cols-3">
       <Card
         v-for="(trip, index) in trips"
         :key="trip"
@@ -21,7 +21,7 @@
 
         <div class="text-sm text-gray-700 space-y-1">
           <p><strong>Date:</strong> {{ trip.date }}</p>
-          <p><strong>Time:</strong> {{ trip.time }}</p>
+          <p><strong>Time:</strong> {{ trip.time }}</p> 
           <p><strong>Stage:</strong> {{ trip.stage }}</p>
         </div>
 

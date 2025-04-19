@@ -1,7 +1,7 @@
 <template>
   <div class="booking-page">
     <h1 class="text-2xl text-blue-600 bold">Book Your Ride</h1>
-    
+
     <!-- Booking Form -->
     <form @submit.prevent="handleBooking" class="booking-form">
       <div class="form-group">
@@ -38,27 +38,26 @@
       </div>
 
       <div class="form-group">
-        <Button type="submit" :disabled="isSubmitting" name="AddBooking"/>
+        <Button type="submit" :disabled="isSubmitting" name="AddBooking" />
       </div>
     </form>
 
     <!-- Booking Confirmation Modal -->
-        <SuccessModal v-if="isSubmitting" title="booking">
-          <p>Booking successfully added to the queue!</p>
-        </SuccessModal>
-      <!-- <UAlert color="green" > success </UAlert>   -->
+    <SuccessModal v-if="isSubmitting" title="Booking">
+      <p>Booking successfully added to the queue!</p>
+      <UButton label="close" color="red" @click="closeModal" />
+    </SuccessModal>
 
     <!-- Booking Queue -->
-    <UCard v-if="bookingQueue.length > 0" class="queue-container flex-row" >
+    <UCard v-if="bookingQueue.toArray().length > 0" class="queue-container flex-row">
       <h2>Booking Queue</h2>
-      <UCard v-for="(booking, index) in bookingQueue" :key="index" class="booking-UCard">
+      <UCard v-for="(booking, index) in bookingQueue.toArray()" :key="index" class="booking-UCard">
         <h3>{{ booking.passengerName }}</h3>
         <p>Pickup: {{ booking.pickupLocation }}</p>
         <p>Destination: {{ booking.destination }}</p>
         <p>Status: {{ booking.status }}</p>
         <div v-if="booking.status === 'Pending'" class="progress">
           <div class="progress-bar"></div>
-          {{ creationDate }}
         </div>
       </UCard>
     </UCard>
@@ -68,73 +67,59 @@
       <p>{{ errorMessage }}</p>
     </div>
   </div>
-  
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
+import { DoublyLinkedList } from '~/utils/LinkedList'
 
+const newBooking = ref({
+  passengerName: '',
+  pickupLocation: '',
+  destination: '',
+})
 
-export default {
-  setup() {
-    // Reactive references for booking form data
-    const newBooking = ref({
-      passengerName: "",
-      pickupLocation: "",
-      destination: "",
-      // creationDate: computed(Date.now().toString())
-      
-    });
+const bookingQueue = ref(new DoublyLinkedList())
+const isSubmitting = ref(false)
+const showModal = ref(false)
+const errorMessage = ref('')
 
-    // Reactive state for booking queue and UI elements
-    const bookingQueue = ref([]);
-    const isSubmitting = ref(false);
-    const showModal = ref(false);
-    const errorMessage = ref("");
+// Function to handle booking form submission
+const handleBooking = () => {
+  // Input validation (basic checks)
+  if (!newBooking.value.passengerName || !newBooking.value.pickupLocation || !newBooking.value.destination) {
+    errorMessage.value = 'All fields are required!'
+    return
+  }
 
-    // Function to handle booking form submission
-    const handleBooking = () => {
-      // Input validation (basic checks)
-      if (!newBooking.value.pickupLocation || !newBooking.value.destination) {
-        errorMessage.value = "All fields are required!";
-        return;
-      }
+  // Simulate booking submission
+  isSubmitting.value = true
+  setTimeout(() => {
+    // Add the new booking to the linked list with a "Pending" status
+    const bookingData = {
+      ...newBooking.value,
+      status: 'Pending',
+    }
+    bookingQueue.value.append(bookingData)
 
-      // Simulate booking submission
-      isSubmitting.value = true;
-      setTimeout(() => {
-        // Add the new booking to the queue with a "Pending" status
-        bookingQueue.value.push({
-          ...newBooking.value,
-          status: "Pending",
-        });
+    // Reset form
+    newBooking.value.passengerName = ''
+    newBooking.value.pickupLocation = ''
+    newBooking.value.destination = ''
 
-        // Reset form
-        newBooking.value.passengerName = "";
-        newBooking.value.pickupLocation = "";
-        newBooking.value.destination = "";
+    // Show confirmation modal
+    showModal.value = true
+    isSubmitting.value = false
+  }, 1500) // Simulate delay in booking processing
+}
 
-        // Show confirmation modal
-        showModal.value = true;
-        isSubmitting.value = false;
-      }, 1500); // Simulate delay in booking processing
-    };
+// Function to close the modal
+const closeModal = () => {
+  showModal.value = false
+}
 
-    // Function to close the modal
-    const closeModal = () => {
-      showModal.value = false;
-    };
+// Add other methods (like removing bookings, etc.) as needed.
 
-    return {
-      newBooking,
-      bookingQueue,
-      isSubmitting,
-      showModal,
-      errorMessage,
-      handleBooking,
-      closeModal,
-    };
-  },
-};
 </script>
 
 <style scoped>
@@ -165,8 +150,6 @@ input {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-
-
 
 .queue-container {
   margin-top: 20px;
@@ -207,7 +190,6 @@ input {
   margin-top: 20px;
   color: red;
 }
-
 
 .modal-content Button:hover {
   background-color: #45a049;
