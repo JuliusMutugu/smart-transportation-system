@@ -1,19 +1,24 @@
 <template>
-  <div class="p-6">
+  <div  class="m-6 justify-center">
     <UCard class="max-w-xl mx-auto">
-      <h2 class="text-xl font-bold mb-4">Stage Queue Management</h2>
-      
-      <UInput v-model="newPassenger" placeholder="Enter passenger name" class="mb-2" />
-      <USelect v-model="selectedStage" :options="stages" class="mb-2" />
-      
-      <UButton @click="addToQueue" class="mb-4">Add to Queue</UButton>
 
-      <div v-if="selectedStage">
-        <h3 class="font-semibold">Queue at {{ selectedStage }}:</h3>
-        <ul class="list-disc list-inside">
-          <li v-for="(p, i) in queue" :key="i">{{ p }}</li>
-        </ul>
-      </div>
+        <h2 class="text-xl font-bold mb-4">Stage Queue Management</h2>
+        <UContainer>
+          <li v-for="value, index in queue":key=value i>{{ value }}</li>
+        </UContainer>
+        <UInput v-model="newPassenger" placeholder="Enter passenger name" required class="mb-2" />
+        <select name="stages" id="stage"  >
+          <option v-for="value, index in stages":key=value value="{{ selectedStage }}"  > {{ value }} </option>
+        </select>
+        <UInput type="text" v-model="selectedStage" placeholder="pickup location " />
+      
+      
+        <UButton @click="addToQueue" class="mb-4">Add to Queue</UButton>
+        <UDivider/>
+        <UBadge color="blue">
+          <h3 class="font-semibold" >Queue at:  {{ selectedStage }}</h3>
+        </UBadge>
+
     </UCard>
   </div>
 </template>
