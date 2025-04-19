@@ -8,6 +8,8 @@
 </template>
 
 <script lang="ts" setup>
+import { SingleLinkedList } from '~/utils/singleNodeLinkedList';
+
 
 
  const linkedList = new SingleLinkedList()
