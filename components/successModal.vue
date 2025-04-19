@@ -1,7 +1,7 @@
 <template>
   <div class = 'modal'>
-    <div class="modal-content">
-      <h2> {{ title }}</h2>
+    <div class="modal-content"> 
+      <h2 class="text-emerald-500"> Success{{ title }}</h2>
       <slot></slot>
      
     </div>
@@ -9,6 +9,9 @@
 </template>
 
 <script lang="ts" setup>
+ const isSubmitting = ref(false);
+ const showModal = ref(false);
+
 defineProps({
   title:String,
 

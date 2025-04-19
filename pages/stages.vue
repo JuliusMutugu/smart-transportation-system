@@ -18,18 +18,30 @@
         <UBadge color="blue">
           <h3 class="font-semibold" >Queue at:  {{ selectedStage }}</h3>
         </UBadge>
+        <UDivider/> 
+        <UButton label="remove_from_stage" @click="removeFromStage" color="orange"/>
 
     </UCard>
+    <SuccessModal v-if="is_sending" title=" Booking !">
+      <p> stage added successfully !</p>
+      <UButton label="close" @click="close_success"/>
+
+    </SuccessModal>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 
-const { enqueuePassenger, getQueue } = useStageQueue()
+const { enqueuePassenger, getQueue,dequeuePassenger } = useStageQueue()
 
 const newPassenger = ref('')
 const selectedStage = ref('')
+const is_sending = ref(false);
+
+const close_success = () =>{
+  is_sending.value = false;
+}
 
 const stages = ['CBD', 'Westlands', 'Thika', 'Kasarani']
 
@@ -39,6 +51,7 @@ const addToQueue = () => {
   if (selectedStage.value && newPassenger.value) {
     enqueuePassenger(selectedStage.value, newPassenger.value)
     newPassenger.value = ''
+    is_sending.value=true;
     updateQueue()
   }
 }
@@ -47,6 +60,10 @@ const updateQueue = () => {
   if (selectedStage.value) {
     queue.value = getQueue(selectedStage.value)
   }
+
+}
+const removeFromStage = () =>{
+  dequeuePassenger(selectedStage.value);
 }
 
 watch(selectedStage, updateQueue)

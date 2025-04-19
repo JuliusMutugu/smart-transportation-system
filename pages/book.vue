@@ -4,7 +4,7 @@
     
     <!-- Booking Form -->
     <form @submit.prevent="handleBooking" class="booking-form">
-      <!-- <div class="form-group">
+      <div class="form-group">
         <label for="passengerName">Name:</label>
         <input
           type="text"
@@ -13,7 +13,7 @@
           placeholder="Enter your name"
           required
         />
-      </div> -->
+      </div>
 
       <div class="form-group">
         <label for="pickupLocation">Pickup Location:</label>
@@ -43,12 +43,10 @@
     </form>
 
     <!-- Booking Confirmation Modal -->
-        <SuccessModal v-if="isSubmitting">
-          <h2>Booking Confirmation</h2>
+        <SuccessModal v-if="isSubmitting" title="booking">
           <p>Booking successfully added to the queue!</p>
-          <Button @click="closeModal" name="close"/>
         </SuccessModal>
-      
+      <!-- <UAlert color="green" > success </UAlert>   -->
 
     <!-- Booking Queue -->
     <UCard v-if="bookingQueue.length > 0" class="queue-container flex-row" >
@@ -80,7 +78,7 @@ export default {
   setup() {
     // Reactive references for booking form data
     const newBooking = ref({
-      // passengerName: "",
+      passengerName: "",
       pickupLocation: "",
       destination: "",
       // creationDate: computed(Date.now().toString())
