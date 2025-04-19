@@ -1,6 +1,6 @@
 <template>
-  <div class="flex justify-center items-center h-screen bg-gray-100">
-    <UCard class="w-96 p-8 shadow-lg rounded-lg bg-white">
+  <div class="items-center justify-center">
+    <UCard class="w-96 p-8 shadow-lg rounded-lg bg-white items-center self-center ">
       <h1 class="text-2xl font-semibold text-center mb-6">Login</h1>
       <form @submit.prevent="handleLogin">
         <UInput 

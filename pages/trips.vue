@@ -3,12 +3,12 @@
     <h1 class="text-3xl font-semibold text-lime-600 mb-6">My Trips</h1>
 
     <div class="grid gap-6 md:grid-cols-2">
-      <UCard
+      <Card
         v-for="(trip, index) in trips"
         :key="trip"
         class="bg-white"
       >
-        <template #header>
+        <div >
           <div class="flex justify-between items-center">
             <h2 class="text-lg font-semibold text-gray-800">
               {{ trip.route }}
@@ -17,7 +17,7 @@
               {{ trip.status }}
             </UBadge>
           </div>
-        </template>
+        </div>
 
         <div class="text-sm text-gray-700 space-y-1">
           <p><strong>Date:</strong> {{ trip.date }}</p>
@@ -25,25 +25,27 @@
           <p><strong>Stage:</strong> {{ trip.stage }}</p>
         </div>
 
-        <template #footer>
+        <div >
           <div class="flex justify-end">
-            <UButton
+            <Button
               v-if="trip.status === 'Upcoming'"
               color="red"
               variant="soft"
               @click="cancelTrip(index)"
+              name="cancelTrip"
             
               Cancel
             />
           </div>
-        </template>
-      </UCard>
+        </div>
+      </Card>
     </div>
   </div>
-</template>
+</<template>
+
+</template>>
 
 <script setup>
-import { ref } from 'vue'
 
 const trips = ref([
   {

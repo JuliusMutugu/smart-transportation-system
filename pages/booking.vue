@@ -1,5 +1,5 @@
 <template>
-  <div class="booking-queue">
+  <div class="booking-queue grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-1"">
     <h1>Booking Queue</h1>
     <div class="queue-container">
       <div
@@ -24,8 +24,6 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-
 export default {
   setup() {
     // Reactive reference for booking queue

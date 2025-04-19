@@ -1,6 +1,7 @@
 <template>
   <div class="p-6 min-h-screen bg-gray-100">
     <h1 class="text-3xl font-semibold text-lime-600 mb-6">My Profile</h1>
+    <UButton label="logout" color="red" size="sm" class="float-right" to="/login" />
 
     <UCard class="max-w-xl mx-auto bg-white">
       <template #header>

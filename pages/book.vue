@@ -1,10 +1,10 @@
 <template>
   <div class="booking-page">
-    <h1>Book Your Ride</h1>
+    <h1 class="text-2xl text-blue-600 bold">Book Your Ride</h1>
     
     <!-- Booking Form -->
     <form @submit.prevent="handleBooking" class="booking-form">
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="passengerName">Name:</label>
         <input
           type="text"
@@ -13,7 +13,7 @@
           placeholder="Enter your name"
           required
         />
-      </div>
+      </div> -->
 
       <div class="form-group">
         <label for="pickupLocation">Pickup Location:</label>
@@ -38,50 +38,53 @@
       </div>
 
       <div class="form-group">
-        <button type="submit" :disabled="isSubmitting">Add Booking</button>
+        <Button type="submit" :disabled="isSubmitting" name="AddBooking"/>
       </div>
     </form>
 
     <!-- Booking Confirmation Modal -->
-    <div v-if="showModal" class="modal">
-      <div class="modal-content">
-        <h2>Booking Confirmation</h2>
-        <p>Booking successfully added to the queue!</p>
-        <button @click="closeModal">Close</button>
-      </div>
-    </div>
+        <SuccessModal v-if="isSubmitting">
+          <h2>Booking Confirmation</h2>
+          <p>Booking successfully added to the queue!</p>
+          <Button @click="closeModal" name="close"/>
+        </SuccessModal>
+      
 
     <!-- Booking Queue -->
-    <div v-if="bookingQueue.length > 0" class="queue-container">
+    <UCard v-if="bookingQueue.length > 0" class="queue-container flex-row" >
       <h2>Booking Queue</h2>
-      <div v-for="(booking, index) in bookingQueue" :key="index" class="booking-card">
+      <UCard v-for="(booking, index) in bookingQueue" :key="index" class="booking-UCard">
         <h3>{{ booking.passengerName }}</h3>
         <p>Pickup: {{ booking.pickupLocation }}</p>
         <p>Destination: {{ booking.destination }}</p>
         <p>Status: {{ booking.status }}</p>
         <div v-if="booking.status === 'Pending'" class="progress">
           <div class="progress-bar"></div>
+          {{ creationDate }}
         </div>
-      </div>
-    </div>
+      </UCard>
+    </UCard>
 
     <!-- Error Message -->
     <div v-if="errorMessage" class="error-message">
       <p>{{ errorMessage }}</p>
     </div>
   </div>
+  
 </template>
 
 <script>
-import { ref } from "vue";
+
 
 export default {
   setup() {
     // Reactive references for booking form data
     const newBooking = ref({
-      passengerName: "",
+      // passengerName: "",
       pickupLocation: "",
       destination: "",
+      // creationDate: computed(Date.now().toString())
+      
     });
 
     // Reactive state for booking queue and UI elements
@@ -93,7 +96,7 @@ export default {
     // Function to handle booking form submission
     const handleBooking = () => {
       // Input validation (basic checks)
-      if (!newBooking.value.passengerName || !newBooking.value.pickupLocation || !newBooking.value.destination) {
+      if (!newBooking.value.pickupLocation || !newBooking.value.destination) {
         errorMessage.value = "All fields are required!";
         return;
       }
@@ -165,29 +168,13 @@ input {
   border-radius: 4px;
 }
 
-button {
-  width: 100%;
-  padding: 12px;
-  background-color: limegreen;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
 
-button:disabled {
-  background-color: #ddd;
-}
-
-button:hover {
-  background-color: #45a049;
-}
 
 .queue-container {
   margin-top: 20px;
 }
 
-.booking-card {
+.booking-UCard {
   background-color: #f1f1f1;
   padding: 15px;
   margin: 10px;
@@ -196,11 +183,11 @@ button:hover {
   text-align: left;
 }
 
-.booking-card h3 {
+.booking-UCard h3 {
   margin: 0;
 }
 
-.booking-card p {
+.booking-UCard p {
   margin: 5px 0;
 }
 
@@ -223,36 +210,8 @@ button:hover {
   color: red;
 }
 
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-.modal-content {
-  background-color: white;
-  padding: 30px;
-  border-radius: 8px;
-  text-align: center;
-  max-width: 400px;
-}
-
-.modal-content button {
-  background-color: limegreen;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.modal-content button:hover {
+.modal-content Button:hover {
   background-color: #45a049;
 }
 </style>

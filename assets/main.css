@@ -1,0 +1,51 @@
+.booking-queue {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .queue-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .booking-card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    width: 300px;
+    margin: 0 auto;
+  }
+  
+  .booking-card h2 {
+    margin: 0;
+  }
+  
+  .progress {
+    margin-top: 10px;
+    height: 10px;
+    background-color: #ddd;
+    border-radius: 5px;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background-color: limegreen;
+    border-radius: 5px;
+    transition: width 1s ease;
+  }
+  
+  button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
