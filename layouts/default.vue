@@ -7,8 +7,6 @@
       <NuxtLink to="/profile"> <NavSection>Profile</NavSection></NuxtLink>
       <!-- <NuxtLink to="/book"> book</NuxtLink> -->
       <NuxtLink to="/trips"> <NavSection>Trips</NavSection></NuxtLink>
-      <!-- <NuxtLink to="/transport"> transport</NuxtLink> -->
-      <!-- <NuxtLink to="/stages"> stages</NuxtLink> -->
       <NuxtLink to="/driverTrip"><NavSection>DriverTrips </NavSection></NuxtLink>
     </div>
     <slot></slot>
