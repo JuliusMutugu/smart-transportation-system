@@ -1,4 +1,6 @@
+
 <template>
+ 
   <div>
     <button> {{ name }} <slot> </slot></button>
   </div>
