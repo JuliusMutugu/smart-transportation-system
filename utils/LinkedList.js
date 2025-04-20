@@ -50,13 +50,13 @@ export class DoublyLinkedList {
     }
     return null;
   }
-  //find next trip
-  findNext(){
-    const currentNode = this.current;
+  // //find next trip
+  // findNext(){
+  //   const currentNode = this.current;
     
-    currentNode = currentNode.prev
-    return currentNode.data
-  }
+  //   currentNode = currentNode.prev
+  //   return currentNode.data
+  // }
   
 
 // remove the last
