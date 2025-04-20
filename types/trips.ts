@@ -8,3 +8,4 @@ export interface Trip {
     booked:      number;
     status:      string;
 }
+// type to use with the API
