@@ -1,3 +1,4 @@
+// this is the logic to fetch data and also addtrips trough the api(hosted on port:5000)
 import type { Trip } from "~/types/trips"
 
 export const useTrips = () => {
