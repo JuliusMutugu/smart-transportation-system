@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="navsection my-2 rounded-md text-right  p-2">
-      <NuxtLink to="/"> <NavSection>Home</NavSection></NuxtLink>
+      <NuxtLink to="/"> <NavSection>Home </NavSection></NuxtLink>
       <NuxtLink to="/dashboard"> <NavSection>Dashboard</NavSection></NuxtLink>
       <!-- <NuxtLink to="/Booking"> <NavSection>Bookings</NavSection></NuxtLink> -->
       <NuxtLink to="/profile"> <NavSection>Profile</NavSection></NuxtLink>
