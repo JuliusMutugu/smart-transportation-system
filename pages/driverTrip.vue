@@ -94,17 +94,34 @@
 import { ref } from 'vue'
 import { DoublyLinkedList } from '~/utils/LinkedList'
 
+const { addTriptoServer } = useTrips()
+
+
 const tripsList = new DoublyLinkedList()
 const searchTerm = ref('')
 // const starting = ref('')
 const destinationp = ref('')
 const pickupLocation = ref('')
 const timeToStart = ref('')
+
  const show_alert = ref(true)
 
 const alert_message = ref("")
 
 const isApplying = ref(false) // open application area section
+
+
+// to add the trip on the api
+const trip = reactive({
+  id: Math.floor(Math.random() * 1000), // just for local uniqueness
+  route: '',
+  pickup: '',
+  destination: '',
+  time: '',
+  capacity: 14,
+  booked: 0,
+  status: 'Pending',
+})
 
 const initialTrips = [
   {
@@ -134,11 +151,9 @@ const cancelTripSection = () =>{
   isApplying.value = false;
 
 }
-// Operations
+// Operations  add trip to the list
 const addTrip = () => {
-  
-  
-  const newTrip = {
+    const newTrip = {
     id: Math.floor(Math.random() * 1000),
     route: `${pickupLocation.value} to ${destinationp.value}`,
     pickup: pickupLocation.value,
@@ -148,17 +163,18 @@ const addTrip = () => {
     booked: 0,
     status: 'Pending'
   }
-  
-  // if (!newTrip.value.pickup || !newTrip.value.destinationp || !newTrip.value.timeToStart) {
-  //   alert_message.value = 'All fields are required!'
-  //   return
-  // }
-  // else{
+  try {
+    addTriptoServer(newTrip)
+  } catch (error) {
+    alert_message.value = 'Error adding trip to server'
+    return
+  }
     tripsList.append(newTrip)
   tripsArray.value = tripsList.toArray() // Update the array to re-render
   newTrip.booked +=1
   isApplying.value = false
   alert_message.value = `Trip from ${pickupLocation.value} to ${destinationp.value} added to the list`
+  
   // }
 }
 
