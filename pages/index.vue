@@ -1,13 +1,13 @@
 <template>
-  <div class="min-h-screen flex flex-col items-center justify-center  bg-[#f1f1f1f1]"">
+  <div class="min-h-screen flex flex-col items-center justify-center  bg-[#f1f1f1f1]">
    
 
-    <!-- Hero Section -->
+    <!-- top Section -->
     <div class="relative z-10   text-center px-4 py-10">
       <h1 class="text-5xl font-bold leading-tight mb-4">Apply Smart. Travel Fast. </h1>
       <p class="text-lg mb-6">Your everyday manager of trip management and accountability check.</p>
 
-      <!-- Ride navigation section -->
+      <!-- trips navigation section -->
         <UButton  color="orange" size="lg"  label="Book" padded="true" class="px-3" to="/book"/>
       <p class="text-sm">Already have an account? <NuxtLink to="/login" class="text-blue-400">Log in</NuxtLink></p>
       <p class="text-sm mt-2">New here? <NuxtLink to="/" class="text-blue-400">Sign up</NuxtLink></p>
