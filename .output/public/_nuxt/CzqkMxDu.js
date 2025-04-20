@@ -1,0 +1,1 @@
+import{l as o,c as s,o as a,a as n,s as c,t as r,_}from"./CDQshI6z.js";const l={class:"booking-card"},d=o({__name:"card",props:{title:String},setup(t){return(e,i)=>(a(),s("div",l,[n("h2",null,r(t.title),1),c(e.$slots,"default",{},void 0,!0)]))}}),m=_(d,[["__scopeId","data-v-c6d552cb"]]);export{m as _};

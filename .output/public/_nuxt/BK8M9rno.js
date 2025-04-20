@@ -1,0 +1,1 @@
+import{l as o,c as n,o as a,a as s,d as r,s as c,t as _,_ as l}from"./CDQshI6z.js";const d=o({__name:"button",props:{name:String,color:String},setup(e){return(t,p)=>(a(),n("div",null,[s("button",null,[r(_(e.name)+" ",1),c(t.$slots,"default",{},void 0,!0)])]))}}),i=l(d,[["__scopeId","data-v-e32efdd6"]]);export{i as _};
