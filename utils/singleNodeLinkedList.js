@@ -6,7 +6,7 @@ class Node {
   }
 }
 
-// Linked List class
+// Linked List class singleLinked
 export class SingleLinkedList {
   constructor() {
     this.head = null
