@@ -1,4 +1,5 @@
 <template>
+  <!-- created for understanding purposes-->
   <div class="m-6 text-center">
     <li v-for="(list, index) in linkedlistArray":key='list'> {{ list  }} </li>
     <UInput v-model="value_to_add" placeholder="name" size="sm" class="w-1/2"/>
